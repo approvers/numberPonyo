@@ -1,8 +1,8 @@
-name: style
+name: fix
 on:
   pull_request:
 jobs:
-  style:
+  fix:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -12,4 +12,4 @@ jobs:
         with:
           java-version: 11
       - name: style
-        run: sbt scalafixAll --check
+        run: sbt "scalafixAll --check"
