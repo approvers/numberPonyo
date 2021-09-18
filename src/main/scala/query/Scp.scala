@@ -13,7 +13,7 @@ object GetScp {
     Try {
       val browser = JsoupBrowser()
       val link =
-        s"http://scp-jp.wikidot.com/scp-${number.toString}"
+        s"http://scp-jp.wikidot.com/scp-${"%03d".format(number).toString}"
       val doc = browser.get(link)
       val doc2 =
         browser.get(
