@@ -6,18 +6,8 @@ import query.GetScp
 import scala.util.Failure
 import scala.util.Success
 import query.GetPokemon
+import bot.Bot
 
 object Main extends App {
-  for (i <- 100 until 500) {
-    println(i)
-    GetScp(i) match {
-      case Failure(exception) => println(exception.getMessage)
-      case Success(scp)       => println(scp)
-    }
-    GetPokemon(i) match {
-      case Failure(exception) => println(exception.getMessage)
-      case Success(pokemon)   => println(pokemon)
-    }
-
-  }
+  Bot()
 }
