@@ -25,7 +25,7 @@ object Bot {
     client.addMessageCreateListener(event => {
       if (!event.getMessageAuthor.isBotUser) {
         val number =
-          "\\d{1,4}".r.findFirstIn(event.getMessageContent)
+          "(?<!\\d)\\d{1,4}(?!\\d)".r.findFirstIn(event.getMessageContent)
         number match {
           case Some(value) => sendNumbers(value.toInt, event.getChannel)
           case None        => {}
