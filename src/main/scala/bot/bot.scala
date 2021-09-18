@@ -13,6 +13,7 @@ import scala.util.Random
 import scala.util.Try
 import org.javacord.api.entity.message.embed.EmbedBuilder
 import java.awt.Color
+import org.javacord.api.entity.channel.TextChannel
 
 object Bot {
   val TOKEN = ConfigFactory.load().getString("TOKEN")
@@ -26,15 +27,17 @@ object Bot {
         val number =
           "\\d{1,4}".r.findFirstIn(event.getMessageContent)
         number match {
-          case Some(value) => sendNumbers(value.toInt)
+          case Some(value) => sendNumbers(value.toInt, event.getChannel)
           case None        => { println("iosdajoiads") }
         }
       }
     })
   }
 
-  def sendNumbers(number: Int): Unit = {
-    val channel = client.getTextChannelById("811508503616421891")
+  def sendNumbers(
+      number: Int,
+      channel: TextChannel
+    ): Unit = {
     val pokemon = GetPokemon(number) match {
       case Success(value) =>
         new EmbedBuilder()
@@ -76,7 +79,7 @@ object Bot {
           List(scp, pokemon).filter(x => x != null)
       )
     if (!sendMessage.isEmpty) {
-      channel.get.sendMessage(sendMessage.apply(0))
+      channel.sendMessage(sendMessage.apply(0))
     }
   }
 }

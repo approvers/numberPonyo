@@ -10,15 +10,4 @@ import bot.Bot
 
 object Main extends App {
   Bot()
-  for (i <- 100 until 500) {
-    println(i)
-    GetScp(i) match {
-      case Failure(exception) => println(exception.getMessage)
-      case Success(scp)       => println(scp)
-    }
-    GetPokemon(i) match {
-      case Failure(exception) => println(exception.getMessage)
-      case Success(pokemon)   => println(pokemon)
-    }
-  }
 }
