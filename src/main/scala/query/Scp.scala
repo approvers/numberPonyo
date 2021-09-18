@@ -22,6 +22,13 @@ object GetScp {
             }}"
         )
       val title = (doc >> text("#page-title"))
+      val exception = (doc >> elementList("#page-content > p"))
+        .filter(x => x.text.contains("説明"))
+        .apply(0)
+        .text
+        .drop(4)
+        .take(100)
+        .+("...")
       val metaTitle =
         (doc2 >> elementList("li"))
           .filter(x => x.text.contains(title))
@@ -39,7 +46,7 @@ object GetScp {
           .apply(1)
       val rate = (doc >?> text(".rate-points")).get
 
-      Scp(title, link, metaTitle, objectClass, rate)
+      Scp(title, exception, link, metaTitle, objectClass, rate)
     }
   }
 }

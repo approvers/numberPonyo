@@ -23,6 +23,10 @@ object GetPokemon {
           .apply(0)
           .text
           .drop(5)
+      val calling = (doc >> elementList("tbody > tr > th"))
+        .filter(x => x.text.contains("ポケモン"))
+        .apply(0)
+        .text
       val types =
         (doc >> elementList("tbody > .center > td > .type > li > a > img"))
           .map(x => x.attr("alt"))
@@ -32,7 +36,7 @@ object GetPokemon {
       val img =
         s"https://78npc3br.user.webaccel.jp/poke/icon96/n${number.toString}.gif"
 
-      Pokemon(name, link, types, explanation, characteristic, img)
+      Pokemon(name, link, calling, types, explanation, characteristic, img)
     }
   }
 }
