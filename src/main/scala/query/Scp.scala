@@ -22,13 +22,12 @@ object GetScp {
             }}"
         )
       val title = (doc >> text("#page-title"))
-      val exception = (doc >> elementList("#page-content > p"))
+      val exception = ((doc >> elementList("#page-content > p"))
         .filter(x => x.text.contains("説明"))
         .apply(0)
         .text
         .drop(4)
-        .take(100)
-        .+("...")
+        .take(100)) + "..."
       val metaTitle =
         (doc2 >> elementList("li"))
           .filter(x => x.text.contains(title))
