@@ -28,7 +28,7 @@ object Bot {
           "\\d{1,4}".r.findFirstIn(event.getMessageContent)
         number match {
           case Some(value) => sendNumbers(value.toInt, event.getChannel)
-          case None        => { println("iosdajoiads") }
+          case None        => {}
         }
       }
     })
