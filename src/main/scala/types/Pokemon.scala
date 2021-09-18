@@ -7,4 +7,4 @@ case class Pokemon(
     explanation: String,
     characteristic: List[String],
     img: String
-)
+  )

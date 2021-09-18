@@ -17,10 +17,9 @@ object GetScp {
       val doc = browser.get(link)
       val doc2 =
         browser.get(
-          s"http://scp-jp.wikidot.com/scp-series${if (number < 1000) ""
-          else
-            "-" +
-              (number / 1000 + 1).toString}"
+            s"http://scp-jp.wikidot.com/scp-series${if (number >= 1000) {
+              "-" + (number / 1000 + 1).toString
+            }}"
         )
       val title = (doc >> text("#page-title"))
       val metaTitle =

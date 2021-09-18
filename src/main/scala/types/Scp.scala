@@ -6,4 +6,4 @@ case class Scp(
     metaTitle: String,
     objectClass: String,
     rate: String
-)
+  )

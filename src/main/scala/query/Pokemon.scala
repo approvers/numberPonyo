@@ -8,6 +8,7 @@ import net.ruippeixotog.scalascraper.util.Validated._
 import scala.util.Try
 
 object GetPokemon {
+
   def apply(number: Int): Try[Pokemon] = {
     Try {
       val browser = JsoupBrowser()
